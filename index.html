@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Live Markdown Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
+
+    <style>
+        body {
+            font-family: BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            white-space: pre-wrap;
+            /* Wraps text */
+            word-wrap: break-word;
+            /* Breaks long words */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">Loading...</div>
+
+    <script>
+        async function loadMarkdown() {
+            const res = await fetch('README.md');
+            const md = await res.text();
+            document.getElementById('content').innerHTML = marked.parse(md);
+        }
+
+        loadMarkdown();
+        // Optional: auto-refresh every 5 seconds
+        setInterval(loadMarkdown, 5000);
+    </script>
+
+</body>
+
+</html>
