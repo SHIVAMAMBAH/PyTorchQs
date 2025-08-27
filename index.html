@@ -46,7 +46,7 @@
 
     <script>
         async function loadMarkdown() {
-            const res = await fetch('README.md');
+            const res = await fetch('Content.md');
             const md = await res.text();
             document.getElementById('content').innerHTML = marked.parse(md);
         }
